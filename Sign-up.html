@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create an User</title>
+</head>
+<style>
+    body {
+        background: linear-gradient(135deg, #4a4c7e, #4a4c7e);
+        font-family: 'Arial', sans-serif;
+        color: white;
+    }
+    div {
+        text-align: center;
+        padding: 50px;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 15px;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+        font-size: 36px;
+        margin-bottom: 20px;
+        text-align: center;
+
+    }
+    .form-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+    .form-group {
+        flex: 1 1 calc(33.333% - 20px); 
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .form-group input{
+        width: 100%;
+        padding: 10px;
+        border-radius: 5px;
+        border: none;
+        background-color: #EEEEEE;
+        color: black;
+        font-size: 16px;
+        margin-top: 5px;
+    }
+    .buttons {
+        width: 100%;
+        padding: 10px;
+        background-color: #000000;
+        color: white;
+        font-size: 16px;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        margin-top: 20px;
+    }
+    .option {
+        width: 100%;
+            display: flex;
+            cursor: pointer;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border: none;
+            margin-top: 20px;
+            border-radius: 12px; 
+            height: 40px;
+            padding-left: 16px;
+            padding-right: 16px;
+            background-color: #EEEEEE;
+            color: black;
+            font-size: 16px; 
+            font-weight: bold;
+            line-height: normal; 
+            letter-spacing: 0.015em; 
+        }
+      .option.active{
+      background-color: black;
+      color: white;
+      }
+      .option button:hover {
+      background-color: #5757572d;
+     }
+     .hidden {
+        display: none;
+    }
+</style>
+<body>
+    <div>
+        <h1>Create an User</h1>
+        <div class="buttonss">
+            <div>
+              <button class="option" onclick="showForm('client', this)">Customer</button>
+              <button class="option" onclick="showForm('company', this)">company</button>
+            </div>
+        </div>
+        <br>
+        <br>        
+        <form method="post" action="insert-user.php">
+            <input type="hidden" name="UserType" value="customer">
+            <div id="client-form" class="form-grid hidden">   
+                <div class="form-group">
+                    <label>First name</label>
+                    <input type="text" id="First-name" placeholder="First name" required name="FName" />
+                </div> 
+                <div class="form-group">
+                    <label>List name</label>
+                    <input type="text" id="List-name" placeholder="List name" required name="LName" />
+                </div>
+                <div class="form-group">
+                    <label>ID number</label>
+                    <input type="text" id="ID-number" name="CID" placeholder="ID number" inputmode="numeric" pattern="\d*" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10);" required />
+                </div>
+                <div class="form-group">
+                    <label>LicenesID</label>
+                    <input type="text" id="LicenesID" name="LicenesID" placeholder="LicenesID" inputmode="numeric" pattern="\d*" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 14);" required />
+                </div>
+                <div class="form-group">
+                    <label>Phone</label>
+                    <input type="text" id="Phone" placeholder="Phone" name="Phone" value="966" inputmode="numeric" pattern="\d*" oninput="this.value = this.value.replace(/[^0-9]/g, '+').slice(0, 13);" required />
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="Email" placeholder="Email" required name="email" />
+                </div>
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" id="Username" placeholder="Username" required name="UsName" />
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="Password" placeholder="Password" name="Password" required />
+                </div>
+                <div class="form-group">
+                    <label>BirthDate</label>
+                    <input type="date" id="BirthDate" placeholder="BirthDate" name="BirthDate" required />
+                </div>
+                <div class="form-group">
+                    <label>city</label>
+                    <input type="text" id="city" placeholder="city" name="City" required />
+                </div>
+                <div class="form-group">
+                    <label>Street</label>
+                    <input type="text" id="Street" placeholder="Street" name="Street" required />
+                </div>
+                <button class="buttons" type="submit">Create</button>
+            </div>
+           
+        </form>
+        <form method="post" action="insert-user.php">
+            <input type="hidden" name="UserType" value="Company">
+            <div id="company-form" class="form-grid hidden">
+                <div class="form-group">
+                    <label>CompanyID</label>
+                    <input type="text" id="CompanyID" placeholder="CompanyID" name="CompanyID" inputmode="numeric" pattern="\d*" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 5);" required />
+                </div> 
+                <div class="form-group">
+                    <label>Name Company</label>
+                    <input type="text" id="Name-Company" placeholder="Name Company" name="Name" required />
+                </div>
+                <div class="form-group">
+                    <label>Phone</label>
+                    <input type="text" id="Phone" name="Phone" placeholder="Phone" value="966" inputmode="numeric" pattern="\d*" oninput="this.value = this.value.replace(/[^0-9]/g, '+').slice(0, 13);" required />
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="Email" placeholder="Email" name="Email" required />
+                </div>
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" id="Username" placeholder="Username" name="UsName" required />
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="Password" placeholder="Password" required name="Password" />
+                </div>
+                <div class="form-group">
+                    <label>Addres</label>
+                    <input type="text" id="Addres" placeholder="Addres" required name="Addres" />
+                </div>
+                <button class="buttons" type="submit">Create</button>
+            </div>
+           
+        </form>
+    </div>    
+</body>
+<script>
+    function showForm(userType, clickedButton) {
+        document.getElementById('client-form').classList.add('hidden');
+        document.getElementById('company-form').classList.add('hidden');
+
+        if (userType === 'client') {
+            document.getElementById('client-form').classList.remove('hidden');
+        } else if (userType === 'company') {
+            document.getElementById('company-form').classList.remove('hidden');
+        }
+
+        document.querySelectorAll('.option').forEach(button => button.classList.remove('active'));
+        clickedButton.classList.add('active');
+    }
+</script>
+</html>
